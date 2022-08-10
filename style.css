@@ -35,3 +35,37 @@ button {
   border-radius: 5px;
   box-shadow: 2px 5px 5px #333;
 }
+
+/* invisible marker to avoid resizing on hover */
+li::marker {
+  content:'✓';
+  color: transparent;
+}
+
+li:hover {
+  background-color: #73937E;
+}
+
+li:hover::marker {
+  content:'✓';
+  color: green;
+}
+
+/* display classes */
+.priority-high {
+  background-color: #7b435b;
+  color: white;
+  font-weight: bold;
+}
+
+.priority-medium {
+  background-color: #8B687F;
+}
+
+.priority-low {
+  background-color: #9FA0C3;
+}
+
+.hide {
+  display: none;
+}
