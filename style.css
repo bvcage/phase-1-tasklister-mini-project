@@ -42,7 +42,7 @@ li::marker {
   color: transparent;
 }
 
-li:hover {
+tr.task-entry-row:hover {
   background-color: #73937E;
 }
 
@@ -66,6 +66,6 @@ li:hover::marker {
   background-color: #9FA0C3;
 }
 
-.hide {
+.complete, .delete {
   display: none;
 }
