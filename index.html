@@ -19,13 +19,21 @@
         <option value="medium">medium</option>
         <option value="low">low</option>
       </select>
+      <label for="new-task-due-date" class="hide">due date</label>
+      <input type="date" id="new-task-due-date" name="new-task-due-date">
       <input type="submit" value="Create New Task">
     </form>
 
     <div id="list">
       <h2>My Todos:</h2>
-      <ul id="tasks">
-      </ul>
+      <table id="tasks">
+        <tr>
+          <th></th>
+          <th>task</th>
+          <th>priority</th>
+          <th>due date</th>
+        </tr>
+      </table>
     </div>
 
     <script src="./src/index.js"></script>
