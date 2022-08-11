@@ -21,16 +21,18 @@
       </select>
       <label for="new-task-due-date" class="hide">due date</label>
       <input type="date" id="new-task-due-date" name="new-task-due-date">
-      <input type="submit" value="Create New Task">
+      <input type="submit" value="add task">
     </form>
 
     <div id="list">
       <h2>My Todos:</h2>
       <table id="tasks">
         <tr>
-          <th>task</th>
-          <th>priority</th>
-          <th>due date</th>
+          <th class="col-status"></th>
+          <th class="col-desc">task</th>
+          <th class="col-priority">priority</th>
+          <th class="col-date">due</th>
+          <th class="col-delete"></th>
         </tr>
       </table>
     </div>

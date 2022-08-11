@@ -66,6 +66,46 @@ li:hover::marker {
   background-color: #9FA0C3;
 }
 
-.complete, .delete {
+.hide, .complete, .delete {
   display: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* table formatting */
+
+#list {
+  width: 80%;
+  max-width: 1000px;
+}
+
+#tasks {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+td {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+tr td.col-desc {
+  text-align: left;
+}
+
+table .col-status {
+  width: 20px;
+}
+
+table .col-priority, .col-date {
+  width: 100px;
+}
+
+table .col-delete {
+  width: 40px;
 }
