@@ -55,6 +55,9 @@ li:hover::marker {
 .priority-high {
   background-color: #7b435b;
   color: white;
+}
+
+.priority-high .col-desc {
   font-weight: bold;
 }
 

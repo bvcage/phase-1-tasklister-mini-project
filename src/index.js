@@ -35,7 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // insert due date data
     const newTaskDueDate = newTaskRow.insertCell();
-    newTaskDueDate.appendChild(document.createTextNode(inputDueDate.value));
+    const parsedDate = inputDueDate.value.split('-');
+    newTaskDueDate.appendChild(document.createTextNode(
+      Number.parseInt(parsedDate[1], 10) + "/" + parsedDate[2]));
     newTaskDueDate.classList.add('col-date');
     
     // reset entry form
