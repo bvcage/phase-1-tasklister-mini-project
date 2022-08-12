@@ -54,7 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // deletion functionality
     const newTaskDelete = newTaskRow.insertCell();
-    newTaskDelete.appendChild(document.createTextNode('del'));
+    const deleteButtonWrapper = document.createElement('div');
+    deleteButtonWrapper.classList.add('wrapper');
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = '✕';
+    deleteButton.id = 'del-button';
+    deleteButtonWrapper.appendChild(deleteButton);
+    newTaskDelete.appendChild(deleteButtonWrapper);
+    newTaskDelete.classList.add('col-delete');
     newTaskDelete.addEventListener('click', function() {markTask(this.parentNode, 'delete')});
  
     // increment task id for next call

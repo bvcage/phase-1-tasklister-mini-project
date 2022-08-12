@@ -93,8 +93,15 @@ table {
 }
 
 td {
-  margin-left: 0px;
-  margin-right: 0px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+td div.wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 tr td.col-desc {
