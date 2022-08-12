@@ -35,9 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // insert due date data
     const newTaskDueDate = newTaskRow.insertCell();
-    const parsedDate = inputDueDate.value.split('-');
-    newTaskDueDate.appendChild(document.createTextNode(
-      Number.parseInt(parsedDate[1], 10) + "/" + parsedDate[2]));
+      // format date - if empty, set to today
+      let parsedDate;
+      if (inputDueDate.value.length > 0) {
+        const parsedDateAry = inputDueDate.value.split('-');
+        parsedDate = Number.parseInt(parsedDate[1], 10) + "/" + Number.parseInt(parsedDate[2], 10);
+      } else {
+        parsedDate = parseTodaysDate();
+      }
+    newTaskDueDate.appendChild(document.createTextNode(parsedDate));
     newTaskDueDate.classList.add('col-date');
     
     // reset entry form
@@ -46,9 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inputDueDate.value = '';
     
     // completion functionality
-    console.log(newTaskRow.cells.length);
     for (let i = 0; i < newTaskRow.cells.length; ++i) {
-      console.log(newTaskRow.cells[i]);
       newTaskRow.cells[i].addEventListener('click', function() {markTask(this.parentNode, 'complete')});
     }
     
@@ -72,4 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function markTask(ele, marking) {
   ele.classList.add(`${marking}`);
+}
+
+function parseTodaysDate() {
+  const date = new Date();
+  // const todayYear = date.getFullYear();
+  const todayMonth = Number.parseInt(date.getMonth(), 10);
+  const todayDay = Number.parseInt(date.getDay(), 10);
+  return `${todayMonth}/${todayDay}`;
 }
