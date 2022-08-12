@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // insert cell for checkmark
     const newTaskStatus = newTaskRow.insertCell();
+    newTaskStatus.textContent = '✓';
+    newTaskStatus.classList.add('check-off');
     newTaskStatus.classList.add('col-status');
     
     // insert description data
@@ -31,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const newTaskPriority = newTaskRow.insertCell();
     newTaskPriority.appendChild(document.createTextNode(inputPriority.value));
     newTaskPriority.classList.add('col-priority');
-    newTaskRow.classList.add(`priority-${inputPriority.value}`);
     
     // insert due date data
     const newTaskDueDate = newTaskRow.insertCell();
@@ -45,14 +46,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     newTaskDueDate.appendChild(document.createTextNode(formattedDate));
     newTaskDueDate.classList.add('col-date');
-    
-    // reset entry form
-    inputDesc.value = '';
-    inputPriority.value = 'none';
-    inputDueDate.value = '';
-    
+
+    // priority color-coding
+    for (let i = 1; i < newTaskRow.cells.length; ++i) {
+      newTaskRow.cells[i].classList.add(`priority-${inputPriority.value}`);
+    }
+
     // completion functionality
     for (let i = 0; i < newTaskRow.cells.length; ++i) {
+      newTaskRow.cells[i].addEventListener('mouseover', function() {
+        highlightCellRow(this.parentNode, true);
+        showCheckmark(this.parentNode, true);
+      });
+      newTaskRow.cells[i].addEventListener('mouseout', function() {
+        highlightCellRow(this.parentNode, false);
+        showCheckmark(this.parentNode, false);
+      });
       newTaskRow.cells[i].addEventListener('click', function() {markTask(this.parentNode, 'complete')});
     }
     
@@ -67,9 +76,20 @@ document.addEventListener("DOMContentLoaded", () => {
     newTaskDelete.appendChild(deleteButtonWrapper);
     newTaskDelete.classList.add('col-delete');
     newTaskDelete.addEventListener('click', function() {markTask(this.parentNode, 'delete')});
- 
+    newTaskDelete.addEventListener('mouseover', function() {highlightRowRed(this.parentNode, true)});
+    newTaskDelete.addEventListener('mouseout', function() {highlightRowRed(this.parentNode, false)});
+
+
+    // FINAL CLEAN UP
+
+    // reset entry form
+    inputDesc.value = '';
+    inputPriority.value = 'none';
+    inputDueDate.value = '';
+
     // increment task id for next call
     ++ TASK_ID;
+
   });
 
 });
@@ -84,4 +104,34 @@ function parseTodaysDate() {
   const todayMonth = Number.parseInt(date.getMonth() + 1, 10);
   const todayDay = Number.parseInt(date.getDate(), 10);
   return `${todayMonth}.${todayDay}`;
+}
+
+function highlightCellRow(tableRow, highlightOn) {
+  for (let i = 1; i < tableRow.cells.length - 1; ++i) {
+    if (highlightOn) {
+      tableRow.cells[i].classList.add('highlight');
+    } else {
+      tableRow.cells[i].classList.remove('highlight');
+    }
+  }
+}
+
+function highlightRowRed(tableRow, highlightOn) {
+  for (let i = 1; i < tableRow.cells.length; ++i) {
+    if (highlightOn) {
+      tableRow.cells[i].classList.add('deletion-highlight');
+    } else {
+      tableRow.cells[i].classList.remove('deletion-highlight');
+    }
+  }
+}
+
+function showCheckmark(tableRow, checkOn) {
+  if (checkOn) {
+    tableRow.cells[0].classList.remove('check-off');
+    tableRow.cells[0].classList.add('check-on');
+  } else {
+    tableRow.cells[0].classList.remove('check-on');
+    tableRow.cells[0].classList.add('check-off');
+  }
 }

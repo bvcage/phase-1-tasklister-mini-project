@@ -37,7 +37,7 @@ button {
 }
 
 /* invisible marker to avoid resizing on hover */
-li::marker {
+/* li::marker {
   content:'✓';
   color: transparent;
 }
@@ -48,8 +48,8 @@ tr.task-entry-row:hover {
 
 li:hover::marker {
   content:'✓';
-  color: green;
-}
+  color: black;
+} */
 
 /* display classes */
 .priority-high {
@@ -96,15 +96,9 @@ td {
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
-  justify-content: center;
 }
 
-td div.wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-tr td.col-desc {
+table td.col-desc {
   text-align: left;
 }
 
@@ -116,6 +110,37 @@ table .col-priority, .col-date {
   width: 100px;
 }
 
+td div.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 table .col-delete {
   width: 40px;
+}
+
+div.task-entry-wrapper-main {
+  width: 100%;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+.highlight {
+  background-color: #73937E;
+}
+
+.deletion-highlight {
+  background-color: #a5394f;
+  text-decoration: line-through;
+}
+
+.check-on {
+  color: #73937E;
+}
+
+.check-off {
+  color: transparent;
 }
