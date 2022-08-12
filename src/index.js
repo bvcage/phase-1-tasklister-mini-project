@@ -36,14 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // insert due date data
     const newTaskDueDate = newTaskRow.insertCell();
       // format date - if empty, set to today
-      let parsedDate;
+      let formattedDate;
       if (inputDueDate.value.length > 0) {
         const parsedDateAry = inputDueDate.value.split('-');
-        parsedDate = Number.parseInt(parsedDate[1], 10) + "/" + Number.parseInt(parsedDate[2], 10);
+        formattedDate = Number.parseInt(parsedDateAry[1], 10) + "." + Number.parseInt(parsedDateAry[2], 10);
       } else {
-        parsedDate = parseTodaysDate();
+        formattedDate = parseTodaysDate();
       }
-    newTaskDueDate.appendChild(document.createTextNode(parsedDate));
+    newTaskDueDate.appendChild(document.createTextNode(formattedDate));
     newTaskDueDate.classList.add('col-date');
     
     // reset entry form
@@ -81,7 +81,7 @@ function markTask(ele, marking) {
 function parseTodaysDate() {
   const date = new Date();
   // const todayYear = date.getFullYear();
-  const todayMonth = Number.parseInt(date.getMonth(), 10);
-  const todayDay = Number.parseInt(date.getDay(), 10);
-  return `${todayMonth}/${todayDay}`;
+  const todayMonth = Number.parseInt(date.getMonth() + 1, 10);
+  const todayDay = Number.parseInt(date.getDate(), 10);
+  return `${todayMonth}.${todayDay}`;
 }
